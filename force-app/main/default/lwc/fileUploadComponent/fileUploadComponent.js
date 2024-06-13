@@ -5,11 +5,11 @@ import getFileUploadLogs from '@salesforce/apex/FileUploadController.getFileUplo
 import { refreshApex } from '@salesforce/apex';
 
 export default class FileUploadComponent extends LightningElement {
-     selectedFileType;
-     fileUploadLogs;
-     parentRecordId;
-     documentFolderId;
-     columns = [
+    selectedFileType;
+    fileUploadLogs;
+    parentRecordId;
+    documentFolderId;
+    columns = [
         { label: 'File Name', fieldName: 'File_Name__c', type: 'text' },
         { label: 'File Type', fieldName: 'File_Type__c', type: 'text' },
         { label: 'Upload Date', fieldName: 'Upload_Date__c', type: 'date' },
@@ -43,6 +43,10 @@ export default class FileUploadComponent extends LightningElement {
 
     handleFileTypeChange(event) {
         this.selectedFileType = event.detail.value;
+        // Reset parentRecordId when switching to Document type
+        if (this.selectedFileType === 'Document') {
+            this.parentRecordId = null;
+        }
     }
 
     handleParentRecordIdChange(event) {
@@ -59,6 +63,7 @@ export default class FileUploadComponent extends LightningElement {
         reader.onload = () => {
             this.fileContent = reader.result.split(',')[1];
         };
+        // encode the file content 
         reader.readAsDataURL(this.selectedFile);
     }
 
@@ -92,3 +97,4 @@ export default class FileUploadComponent extends LightningElement {
         this.dispatchEvent(evt);
     }
 }
+

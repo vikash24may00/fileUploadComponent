@@ -1,3 +1,10 @@
+/**
+ * @description       : 
+ * @author            : VIKASH MUNDARI
+ * @group             : 
+ * @last modified on  : 06-13-2024
+ * @last modified by  : VIKASH MUNDARI
+**/
 public with sharing class FileUploadController {
     @AuraEnabled
     public static void saveFileLogs(String fileName, String fileType, String fileContent, String parentRecordId, String documentFolderId) {
@@ -41,3 +48,26 @@ public with sharing class FileUploadController {
         return [SELECT Id, Name, File_Type__c, File_Name__c, Upload_Date__c, File_URL__c, File_Ref_Id__c FROM File_Upload_Log__c ORDER BY Upload_Date__c DESC];
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

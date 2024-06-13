@@ -5,7 +5,7 @@
   @last modified on  : 06-13-2024
   @last modified by  : VIKASH MUNDARI
 -->
-  
+
 <template>
     <lightning-combobox
         name="fileType"
@@ -17,19 +17,20 @@
     </lightning-combobox>
 
     <template if:true={selectedFileType}>
-        <lightning-input
-            type="text"
-            label="Parent Record ID"
-            value={parentRecordId}
-            onchange={handleParentRecordIdChange}>
-        </lightning-input>
-
         <template if:true={isDocumentType}>
             <lightning-input
                 type="text"
                 label="Document Folder ID"
                 value={documentFolderId}
                 onchange={handleDocumentFolderIdChange}>
+            </lightning-input>
+        </template>
+        <template if:false={isDocumentType}>
+            <lightning-input
+                type="text"
+                label="Parent Record ID"
+                value={parentRecordId}
+                onchange={handleParentRecordIdChange}>
             </lightning-input>
         </template>
 
@@ -43,4 +44,4 @@
         columns={columns}
         class="slds-m-top_medium">
     </lightning-datatable>
-</template>
+</template> 
